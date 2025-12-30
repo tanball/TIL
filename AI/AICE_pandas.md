@@ -38,10 +38,10 @@
 단계
 
 Import pandas
-'''python
+```python
 A1 = pd.dataFrame({“a”:[1,2,3],”b”:[4,5,6],”c”:[7,8,9]})#딕셔너리로 데이터프레임 생성
 A2 = pd.dataFrame([[1,2,3],[4,5,6],[7,8,9],columns=[‘a’,’b’,’c’]])#리스트로 
-'''
+```
 
 데이터프레임 생성
 
@@ -68,19 +68,19 @@ A3 = pd.read_csv(‘file1.csv’) #csv 파일 읽어 데이터프레임 생성
 >
 >	복수 column 추출 시, 리스트 활용
 >
->   '''python
+>   ```python
 >   cust[[‘cust_class’,’age’,’r3m_avg_bill_amt’]] #[]안의 리스트가 가진 3개 컬럼만
->   '''
+>   ```
 
 2.	원하는 row를 슬라이싱하기
 
 >	하나의 값만 사용
 >
->   '''python
+>   ```python
 >   cust[7:10] #정상
 >   cust[7] #오류
 >   cust[‘base_yn’] #정상
->   '''
+>   ```
 
 데이터 조회의 2가지 방법
 
@@ -92,10 +92,10 @@ A3 = pd.read_csv(‘file1.csv’) #csv 파일 읽어 데이터프레임 생성
 >
 >	인간이 읽을 수 있는 라벨값으로 데이터에 접근
 >
->   '''python
+>   ```python
 >   cust.loc[102, ‘age’]
 >   #cust데이터프레임에서 102번 인덱스의 ‘age’컬럼에 해당하는 값 추출.
->   '''
+>   ```
 
 2.	iloc
 
@@ -109,24 +109,24 @@ A3 = pd.read_csv(‘file1.csv’) #csv 파일 읽어 데이터프레임 생성
 데이터프레임에서 원하는 행들만 추출 시 사용
 
 df2 데이터프레임에서 성별 컬럼에 남자만 추출
-'''python
+```python
 df2[ df2[‘성별’]==’M’ ]
 #성별 컬럼이 남자(M)인가?라는 질문에 참인 경우(Boolean)만을 골라 추출
-'''
+```
 
 dataFrame column 추가/삭제
 
 추가
 
-'''python
+```python
 cust[‘r3m_avg_bill_amt2’] = cust[‘r3m_avg_bill_amt’]*2
-'''
+```
 
 삭제
-'''python
+```python
 cust.drop(‘r3m_avg_bill_amt3’,axis=1) #지정 컬럼 삭제
 #axis=0은 행을 따라 내려가는 것, axis=1은 컬럼을 따라 쭉 오른쪽으로 가는 것.
-'''
+```
 
 
 ### pandas 이해 및 활용 - DataFrame 변형하기 (이론+실습)
@@ -140,9 +140,9 @@ cust.drop(‘r3m_avg_bill_amt3’,axis=1) #지정 컬럼 삭제
 
 내부적으로 데이터 분할(split) -> 적용(applying) -> 데이터 병합(combine) 의 3단계를 거쳐 수행된다.
 
->   '''python
+>   ```python
 >   dataframe.groupby(‘성별’).mean()
->   '''
+>   ```
 >
 >   #’성별’컬럼의 특징을 기준으로, 다른 컬럼(예를 들어, 나이)의 평균(mean)을 집계하여 데이터프레임으로 출력
 
@@ -184,10 +184,10 @@ stack : 컬럼 레벨에서 보이는 컬럼명들을 인덱스 레벨로 가져
 unstack : 인덱스 레벨에서 보이는 인덱스값을 컬럼레벨로 보내어 dataframe 변경
 
 * MultiIndex : 말 그대로, 여러 개의 인덱스를 사용함. set_index로도 지정이 가능하다.
-'''python
+```python
 df1 = df.set_index('지점')
 df1
 df1.reset_index()
-'''
+```
 
 데이터프레임.reset_index() : 기존 인덱스 전부 컬럼으로 돌리고, 0~n의 기본 인덱스로 리셋.
