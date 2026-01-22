@@ -248,3 +248,200 @@ TP : 예측이 맞았고, 내 예측값은 True다.
 > *(F1-score)=2×1/(1/Precision+1/Recall)*
 
 
+
+
+### 머신러닝 주요 알고리즘
+
+
+**Scikit-learn**
+
+가장 인기 있는 머신러닝 패키지, 많은 머신러닝 알고리즘 내장됨.
+
+원하는 모델을 import하고, 사용한다.
+
+> from sklearn.family import Model
+
+> from sklearn.linear_model import LinearRegression	#LinearRegression모델을 import
+>
+> model=Linear Regression()		#임포트한 모델 사용.
+
+
+**머신러닝 주요 알고리즘 분류**
+
+회귀
+
+> Linear Regression
+
+분류
+
+> Logistic Regression
+
+회귀분류
+
+> Decision Tree
+>
+> Random Forest
+>
+> K-Nearest Neighbor
+
+
+**Linear Regression(선형 회귀)**
+
+실행 방법
+
+> from sklearn.linear_model import LinearRegression #원하는 모델 임포트
+>
+> model = LinearRegression() #모델 정의
+>
+> model.fit(X_train, y_train) #정의된 모델을 학습(fit)시킨다
+>
+> pred = model.predict(X_test) #예측이나 성능을 확인(pred는 정답)
+
+
+**Logistic Regression(논리 회귀)**
+
+이진 분류 규칙은 0, 1의 두 클래스를 갖는 것이다. 일반 선형 회귀 모델 사용은 어려움.
+
+-> Logistic 함수로 결과값을 0~1사이의 값으로 변환하여 이진 분류
+
+로지스틱 함수
+$$
+\hat{p} = h_\theta(x) = \sigma(X^T\theta)
+\sigma(t) = \frac{1}{1 + e^{-t}}
+\hat{y} = \begin{cases} 
+0, & \hat{p} < 0.5 \\
+1, & \hat{p} \ge 0.5 
+\end{cases}
+$$
+
+각 항의 의미
+- 로지스틱 함수
+*   `$\hat{p}$`: 예측 확률
+*   `$h_\theta(x)$`: 가설 함수
+*   `$\sigma$`: 시그모이드 함수
+*   `$X^T\theta$`: 선형 결합
+- 시그모이드 함수
+*   `$\sigma(t)$`: 입력 $t$에 대한 함수의 출력값 (0에서 1 사이의 확률값)
+*   `$t$`: 함수에 입력되는 변수 또는 값
+*   `$e$`: 자연 상수 (약 2.71828)
+- 결정 규칙
+*   `$\hat{y}$`: 최종 예측 클래스 레이블 (0 또는 1)
+*   `$\hat{p}$`: 모델 예측 확률값 (0.5가 기본 임계값)
+
+ 
+p의 값은 그래프의 y와 같다. p값이 0.5보다 크면 1로, 작으면 0으로 본다.
+
+> ```
+> from sklearn.linear_model import LogisticrRegression #원하는 모델 임포트
+>
+> model = LogisticRegression() #모델 정의
+>
+> model.fit(X_train, y_train) #정의된 모델을 학습(fit)시킨다
+>
+> pred = model.predict(X_test) #정답과 맞춰보며 모델의 학습능력을 확인한다.
+> ```
+
+
+**K-Nearest Neighbor**
+
+새로운 데이터가 주어졌을 때, 기존 데이터 가운데 가장 가까운 k개 이웃의 정보로 새로운 데이터를 예측하는 방법론
+
+> 데이터의 산점도를 그리고, 새 점(데이터)를 그려넣는다. 그 점에서 가장 가까운 k개 점 중 A인 것이 2개, B인 것이 1개면 새 점은 A일 가능성이 높다.
+
+알고리즘이 간단하며, 큰 데이터셋이나 고차원 데이터셋에는 부적합.
+
+> ```
+> from sklearn.neighbors import KNeighborsClassifier #원하는 모델 임포트
+>
+> model = KNeighborsClassifier(n_neighbors=3) #모델 정의. k를 몇으로 할지 지정
+>
+> # 하이퍼파라미터 : 모델에게 주어지는 정보, 설정값. 모델이 학습하는 파라미터(w,b)와 달리 모델에게 우리가 주고 시작.
+>
+> model.fit(X_train, y_train) #정의된 모델을 학습(fit)시킨다
+>
+> pred = model.predict(X_test) #예측이나 성능을 확인(pred는 정답)
+> ```
+
+
+**Decision Tree**
+
+분류와 회귀 작업이 모두 가능한 다재다능한 머신러닝 알고리즘.
+
+복잡한 데이터셋도 학습 가능
+
+강력한 머신러닝 알고리즘인 랜덤 포레스트의 기본 구성요소
+
+> 붓꽃 예시 : 꽃잎 길이가 2.45보다 작다면 ‘세토사’종, 아니라면 꽃잎 길이가 1.75 이하면 종 B, 아니면 C…
+
+과거에 많이 사용. -> 모델의 예측의 이유를 설명할 수 있기 때문에(다른 모델은 대개 블랙박스)
+
+> ```
+> from sklearn.tree import DecisionTreeClassifier #원하는 모델 임포트
+>
+> model = DecisionTreeClassifier (max_depth=2) #모델 정의. 트리 뎁스를 하이퍼파라미터로.
+>
+> model.fit(X_train, y_train) #정의된 모델을 학습(fit)시킨다
+>
+> pred = model.predict(X_test) #예측이나 성능을 확인(pred는 정답)
+> ```
+
+
+**Random Forest**
+
+일련의 예측기(분류/회귀모델)로부터 예측을 수집하면 가장 좋은 모델 하나보다 더 좋은예측을 얻을 수 있음
+
+‘일련의 예측기’이용 -> 앙상블
+
+‘결정 트리’를 일련의 예측기로 한 앙상블 -> 랜덤 포레스트
+
+훈련 세트로부터 무작위로 각기 다른 서브셋(여러개의 디시전 트리)을 만들어 일련의 결정 트리 분류기를 훈련시킬 수 있음.
+
+> ```
+> from sklearn.ensembleimport RandomForestClassifier #원하는 모델 임포트
+>
+> model = RandomForestClassifier(n_estimators=50) #모델 정의. 생성 트리 수 하이퍼파라미터.
+>
+> model.fit(X_train, y_train) #정의된 모델을 학습(fit)시킨다
+>
+> pred = model.predict(X_test) #예측이나 성능을 확인(pred는 정답)
+> ```
+
+랜덤포레스트 하이퍼파라미터 종류
+
+* n_estimators : 생성할 트리의 개수(int, default=100)
+* max_depth : 트리의 최대 깊이(int, default=None)
+* min_samples_split : 노드 분할에 필요한 최소 샘플 개수(int or float, default=2)
+
+랜덤포레스트 변수중요도
+
+> feature_importance_ : 변수에 대한 중요도 값을 제공
+
+
+**GridSearchCV**
+
+모델이 아니라, 성능 최적화를 위한 함수다.
+
+하이퍼파라미터를 순차적으로 입력해 학습하고 측정하며 가장 좋은 최적의 파라미터를 알려준다.
+
+주어진 하이퍼파라미터 조합으로 여러 모델을 만들고, 그 중 어느 값들로 한 경우가 가장 좋은지 확인해줌.
+
+많은 경우의 수로 만들어보면 시간 오래 걸릴 수도.
+
+> ```
+> from sklearn.model_selection import GridSearchCV #원하는 모델 임포트
+>
+> rfc= RandomForestClassifier () #모델 정의. 아직 하이퍼파라미터 없음
+>
+> params = {‘n_estimators’:[100,150], ‘max_depth’:[2,5]} #어떤 파라미터에, 어느 경우의 수를 가지고 할 것인가. 트리 개수는 100개거나, 150개. 트리 깊이는 2거나 5.
+>
+> grid_rfc = GridSearchCV(rfc, param_gric=params) #지정된 내용으로 rfc모델들 돌려보고 가장 좋았던 파라미터 결과를 알려줄 것.
+>
+> model.fit(X_train, y_train) #정의된 모델을 학습(fit)시킨다
+>
+> pred = model.predict(X_test) #예측이나 성능을 확인(pred는 정답)
+> ```
+
+그리드서치CV 중요속성
+
+* .best_params_ : 최적의 파라미터 리스트
+* .best_score_ : 최적 파라미터일 때의 점수값
