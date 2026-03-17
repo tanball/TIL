@@ -34,3 +34,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 > https://github.com/django-crispy-forms/crispy-bootstrap5
 >
 > 문서 내 README.md 파일 참고.
+
+
+*newrelease.io 사이트 : 각종 소프트웨어의 릴리즈 알림을 제공하고, 릴리즈 시 변화에 대한 안내를 제공.*
+*내 프로젝트에 사용하는 라이브러리를 알림 등록. 프로젝트 진행 중 릴리즈로 인한 문제를 막는데 도움이 됨.*
