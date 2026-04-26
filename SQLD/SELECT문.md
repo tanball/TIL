@@ -159,3 +159,9 @@ VARCHAR이 아니라 VARCHAR2인 이유
 >
 > 출처 : https://docs.oracle.com/cd/A57673_01/DOC/server/doc/SCN73/ch6.htm#:~:text=The%20VARCHAR%20datatype%20is%20currently%20synonymous%20with,VARCHAR2%20datatype%20to%20store%20variable%2Dlength%20character%20strings.
 
+### 중요성
+RDBMS에서는 모든 컬럼에 자료형 지정 필수
+또한 리터럴은 자료형과 일치해야 한다.
+
+### 자료형 결정 시점
+물리적 모델링
